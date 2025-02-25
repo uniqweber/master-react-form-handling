@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-grotesk: "Space Grotesk", "serif";
+}
+
+body {
+  @apply font-grotesk text-white text-4xl bg-[#1b1b1b];
+}
+
+input,
+p,
+button,
+label {
+  @apply text-base;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+.max-container {
+  @apply max-w-screen-xl mx-auto px-6;
+}
