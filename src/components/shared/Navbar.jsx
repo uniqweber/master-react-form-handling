@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import { auth } from "../../firebase.config";
@@ -15,15 +15,23 @@ const Navbar = () => {
       });
       return unsubscribe;
    }, []);
-   console.log(currentUser);
+
+   const userLogout = () => {
+      signOut(auth);
+   };
    return (
       <div className="flex items-center justify-between max-container py-4 bg-black ">
          <h1>Navbar</h1>
-         <div className="flex items-center gap-3">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="registration">Registration</NavLink>
+         <p className="flex items-center gap-3">
+            {!currentUser && (
+               <>
+                  <NavLink to="/">Home</NavLink>
+                  <NavLink to="registration">Registration</NavLink>
+               </>
+            )}
+            {currentUser && <button onClick={userLogout}>Logout</button>}
             {currentUser && currentUser}
-         </div>
+         </p>
       </div>
    );
 };
