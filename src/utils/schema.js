@@ -26,4 +26,7 @@ export const registrationSchema = zod
       path: ["confirmPassword"],
    });
 
-
+export const loginSchemas = zod.object({
+   email: zod.string({ required_error: "Email is required" }).email({ message: "Invalid email" }),
+   password: zod.string({ required_error: "Password is required" }).min(8, { message: "Password  must be at least 8 characters long" }),
+});
